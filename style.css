@@ -1,15 +1,42 @@
 /* Base styles */
+:root {
+  --bg-color: #d4cccc;
+  --text-color: #000;
+  --card-bg: #d9d9d9;
+  --accent-color: #3498db;
+  --accent-hover: #217dbb;
+  --btn-text: #fff;
+  --input-bg: #f5f5f5;
+  --input-border: #ccc;
+  --input-focus: #3498db;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+}
+
+/* Темная тема */
+body.dark-theme {
+  --bg-color: #232323;
+  --text-color: #f5f5f5;
+  --card-bg: #333333;
+  --accent-color: #2980b9;
+  --accent-hover: #3498db;
+  --btn-text: #f5f5f5;
+  --input-bg: #444;
+  --input-border: #555;
+  --input-focus: #3498db;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-  
 }
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #d4cccc;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Navigation styles */
@@ -17,9 +44,11 @@ body {
   width: 100%;
   height: 45px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   padding: 0 38px;
-  background-color: #d9d9d9;
+  background-color: var(--card-bg);
+  transition: background-color 0.3s;
 }
 
 .navigation-container {
@@ -35,10 +64,50 @@ body {
 }
 
 .navigation-item {
-  color: #000;
+  color: var(--text-color);
   font-size: 20px;
   font-weight: 300;
   text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navigation-item:hover {
+  text-decoration: underline;
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  margin-left: 20px;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Показываем/скрываем иконки в зависимости от темы */
+.dark-icon {
+  display: none;
+}
+
+.body.dark-theme .light-icon {
+  display: none;
+}
+
+.body.dark-theme .dark-icon {
+  display: inline;
 }
 
 /* Main content styles */
@@ -48,7 +117,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  
+  background-color: var(--bg-color);
+  transition: background-color 0.3s;
 }
 
 .about-container {
@@ -56,18 +126,20 @@ body {
 }
 
 .about-heading {
-  color: #000;
+  color: var(--text-color);
   font-size: 40px;
   font-style: italic;
   font-weight: 700;
   margin-bottom: 43px;
+  transition: color 0.3s;
 }
 
 .about-description {
-  color: #000;
+  color: var(--text-color);
   font-size: 30px;
   font-weight: 300;
   line-height: 140%;
+  transition: color 0.3s;
 }
 
 .profile-image {
@@ -75,6 +147,147 @@ body {
   height: 404px;
   border-radius: 30px;
   object-fit: cover;
+}
+
+/* Форма обратной связи */
+.contact-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.form-input, 
+.form-textarea {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.form-input:focus, 
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-button:hover {
+  background-color: var(--accent-hover);
+}
+
+.form-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Сообщения об ошибках и успешной отправке */
+.error-message {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message {
+  background-color: var(--success-color);
+  color: white;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.input-error {
+  border-color: var(--error-color);
+}
+
+/* Футер */
+.footer {
+  background-color: var(--card-bg);
+  padding: 20px 150px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-social a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  text-decoration: underline;
+}
+
+/* Кнопка Telegram */
+.telegram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--btn-text);
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.telegram-btn:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.7);
 }
 
 /* Responsive styles */
@@ -94,6 +307,10 @@ body {
     width: 200px;
     height: 300px;
   }
+  
+  .footer {
+    padding: 20px 40px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -102,7 +319,11 @@ body {
   }
 
   .navigation-links {
-    display: none;
+    gap: 15px;
+  }
+
+  .navigation-item {
+    font-size: 16px;
   }
 
   .content-wrapper {
@@ -120,5 +341,9 @@ body {
   .profile-image {
     width: 180px;
     height: 270px;
+  }
+  
+  .footer {
+    padding: 20px;
   }
 }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Алемхан - Проекты</title>
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="projects-style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Единый navbar -->
+    <header class="navigation">
+      <nav class="navigation-container">
+        <ul class="navigation-links">
+          <li><a href="index.html#about" class="navigation-item">Обо мне</a></li>
+          <li><a href="index.html#skills" class="navigation-item">Навыки</a></li>
+          <li><a href="#projects" class="navigation-item">Проекты</a></li>
+          <li><a href="index.html#contacts" class="navigation-item">Контакты</a></li>
+        </ul>
+      </nav>
+      <!-- Кнопка переключения темы -->
+      <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+          <span class="light-icon">☀️</span>
+          <span class="dark-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Секция "Проекты" -->
+    <main class="projects-content">
+      <section id="projects">
+        <h1 class="projects-title">Мои проекты</h1>
+        
+        <div class="projects-container">
+          <!-- Проект 1 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://github.com/haraidann/cpp_practice3/raw/main/Guess-the-number.png" alt="Консольная игра угадай число" />
+            </div>
+            <div class="project-info">
+              <h2 class="project-title">Консольная игра "Угадай число"</h2>
+              <p class="project-description">
+		В этой игре компьютер загадывает число от 1 до 100, а задача игрока — угадать его за минимальное количество попыток. Программа дает подсказки, если введенное число меньше или больше загаданного.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/haraidann/cpp_practice3" class="project-link" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Проект 2 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://private-user-images.githubusercontent.com/200566619/435550264-880281a0-bc06-41a1-89b1-0f3a2c530330.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUyMTIyNDQsIm5iZiI6MTc0NTIxMTk0NCwicGF0aCI6Ii8yMDA1NjY2MTkvNDM1NTUwMjY0LTg4MDI4MWEwLWJjMDYtNDFhMS04OWIxLTBmM2EyYzUzMDMzMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQyMVQwNTA1NDRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02ZmU1MDAzMzcxOWFmYzc3OTQyNzZmMWYwNjUxZmQ4MzVmMTEwNzE2NzZhMzgxNjdhNWQ5NjZjZDhkOTgxMzcxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ZMB1j3ZgiMPjjXXxjvDiivEsMUQhm4JL044gTDYoMTw" alt="Сайт-визитка" />
+            </div>
+            <div class="project-info">
+              <h2 class="project-title">Сайт-визитка</h2>
+              <p class="project-description">
+                Одностраничный сайт, созданный для презентации себя как разработчика. Содержит разделы "Обо мне", "Навыки", "Проекты", "Контакты", а также реализовано переключение между светлой и тёмной темой.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/haraidann/haraidann.github.io" class="project-link" target="_blank">GitHub</a>
+                <a href="https://haraidann.github.io/" class="project-link" target="_blank">Демо</a>
+              </div>
+            </div>
+          </div>
+
+      </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-social">
+          <a href="https://github.com/haraidann" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/alemhan-salimzhano" target="_blank">LinkedIn</a>
+        </div>
+        <div class="footer-contact">
+          <p>Телефон: +7 771 359 4982</p>
+        </div>
+        <div class="footer-copy">
+          <p>© 2025 Alemkhan. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

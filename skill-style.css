@@ -2,7 +2,7 @@
 .main-content {
   min-height: calc(10vh - 45px);
   padding: 60px 100px;
-  background-color: #d4cccc;
+  background-color: var(--bg-color);
 }
 
 /* Skills section */
@@ -10,22 +10,23 @@
   font-size: 40px;
   font-weight: 700;
   font-style: italic;
-  color: #000;
+  color: var(--text-color);
   margin-bottom: 40px;
 }
+
+.skills-list {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 140%;
+}
+
 
 .skills-container {
   display: flex;
   justify-content: space-between;
 }
 
-.skills-list {
-  font-size: 20px;
-  font-weight: 300;
-  color: #000;
-  line-height: 140%;
-  
-}
 
 .skill-item {
   margin-bottom: 10px;
