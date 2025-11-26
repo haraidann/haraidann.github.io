@@ -18,6 +18,7 @@
     .worst {background:#f44336; color:white;}
     .submit {background:#2196F3; color:white; width:100%; padding:1.2rem; font-size:1.3rem; margin-top:2rem;}
     .hidden {display:none;}
+    .success-msg {background:#4caf50; color:white; padding:1rem; border-radius:8px; text-align:center; margin:1rem 0;}
   </style>
 </head>
 <body>
@@ -37,23 +38,29 @@
     <button class="submit" onclick="submitForm()">Отправить ответы</button>
   </div>
 
-  <form id="googleForm" class="hidden" action="https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse" method="POST" target="hidden_iframe">
-    <input type="hidden" name="entry.1593001992" id="A_clarity"/>
-    <input type="hidden" name="entry.700969611" id="A_artifacts"/>
-    <input type="hidden" name="entry.281323792" id="B_clarity"/>
-    <input type="hidden" name="entry.1474647835" id="B_artifacts"/>
-    <input type="hidden" name="entry.121291245" id="C_clarity"/>
-    <input type="hidden" name="entry.154193626" id="C_artifacts"/>
-    <input type="hidden" name="entry.40130332" id="D_clarity"/>
-    <input type="hidden" name="entry.681663354" id="D_artifacts"/>
-    <input type="hidden" name="entry.1954762928" id="best"/>
-    <input type="hidden" name="entry.1636042695" id="worst"/>
+  <div id="successMessage" class="success-msg hidden">
+    ✓ Спасибо! Ваши ответы отправлены.
+  </div>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" class="hidden" onload="formSubmitted()"></iframe>
+  
+  <form id="googleForm" class="hidden" 
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse" 
+        method="POST" 
+        target="hidden_iframe">
+    <input type="text" name="entry.1593001992" id="A_clarity"/>
+    <input type="text" name="entry.700969611" id="A_artifacts"/>
+    <input type="text" name="entry.281323792" id="B_clarity"/>
+    <input type="text" name="entry.1474647835" id="B_artifacts"/>
+    <input type="text" name="entry.121291245" id="C_clarity"/>
+    <input type="text" name="entry.154193626" id="C_artifacts"/>
+    <input type="text" name="entry.40130332" id="D_clarity"/>
+    <input type="text" name="entry.681663354" id="D_artifacts"/>
+    <input type="text" name="entry.1954762928" id="best"/>
+    <input type="text" name="entry.1636042695" id="worst"/>
   </form>
-  <iframe name="hidden_iframe" class="hidden"></iframe>
 
   <script>
-    const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse";
-
     const IMAGES = {
       photo: [
         "images/photo_png.png",
@@ -85,6 +92,7 @@
     shuffled.sort(() => Math.random() - 0.5);
 
     let best = "", worst = "";
+    let formSubmittedFlag = false;
 
     const container = document.getElementById("imagesContainer");
     shuffled.forEach(img => {
@@ -101,22 +109,46 @@
       container.appendChild(block);
     });
 
-    function setBest() { best = prompt("Какое изображение лучшее? (A, B, C или D)", ""); }
-    function setWorst() { worst = prompt("Какое изображение худшее? (A, B, C или D)", ""); }
+    function setBest() { 
+      best = prompt("Какое изображение лучшее? (A, B, C или D)", "");
+      if (best) best = best.toUpperCase();
+    }
+
+    function setWorst() { 
+      worst = prompt("Какое изображение худшее? (A, B, C или D)", "");
+      if (worst) worst = worst.toUpperCase();
+    }
 
     function submitForm() {
-      if (!best || !worst) return alert("Укажите лучшее и худшее изображение!");
+      if (!best || !worst) {
+        alert("Укажите лучшее и худшее изображение!");
+        return;
+      }
+
+      if (!['A','B','C','D'].includes(best) || !['A','B','C','D'].includes(worst)) {
+        alert("Введите корректные буквы (A, B, C или D)!");
+        return;
+      }
 
       ['A','B','C','D'].forEach(l => {
         document.getElementById(`${l}_clarity`).value = document.getElementById(`clarity_${l}`).value;
         document.getElementById(`${l}_artifacts`).value = document.getElementById(`artifacts_${l}`).value;
       });
-      document.getElementById("best").value = best.toUpperCase();
-      document.getElementById("worst").value = worst.toUpperCase();
+      document.getElementById("best").value = best;
+      document.getElementById("worst").value = worst;
 
-      document.getElementById("googleForm").setAttribute("action", FORM_ACTION);
+      formSubmittedFlag = true;
       document.getElementById("googleForm").submit();
-      alert("Спасибо! Ответы отправлены.");
+      
+      setTimeout(() => {
+        document.getElementById("successMessage").classList.remove("hidden");
+      }, 500);
+    }
+
+    function formSubmitted() {
+      if (formSubmittedFlag) {
+        console.log("Форма отправлена успешно!");
+      }
     }
   </script>
 </body>
