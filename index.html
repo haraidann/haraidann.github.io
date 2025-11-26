@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Оценка качества изображений</title>
+  <style>
+    body {font-family: Arial, sans-serif; max-width: 1000px; margin: 2rem auto; padding: 1rem; background:#f9f9f9; line-height: 1.5;}
+    h1 {text-align:center;}
+    .images {display:grid; gap:2rem; grid-template-columns:repeat(auto-fit, minmax(320px,1fr));}
+    .img-block {background:white; padding:2rem; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1); text-align:center;}
+    .img-block img {max-width:100%; height:auto; border-radius:8px;}
+    .label {font-weight:bold; margin:1.2rem 0 0.6rem;}
+    .scale {display:flex; justify-content:space-between; align-items:center; font-size:1.1rem;}
+    input[type=range] {width:70%;}
+    .btn {padding:0.9rem 2rem; margin:1rem; font-size:1.1rem; border:none; border-radius:8px; cursor:pointer;}
+    .best {background:#4caf50; color:white;}
+    .worst {background:#f44336; color:white;}
+    .submit {background:#2196F3; color:white; width:100%; padding:1.2rem; font-size:1.3rem; margin-top:2rem;}
+    .hidden {display:none;}
+  </style>
+</head>
+<body>
+  <h1>Оценка качества изображений</h1>
+  <p style="text-align:center; font-size:1.1rem;">
+    Оцените каждое изображение от 1 (очень плохо) до 5 (отлично)
+  </p>
+
+  <div class="images" id="imagesContainer"></div>
+
+  <div style="text-align:center; margin:3rem 0;">
+    <button class="btn best" onclick="setBest()">Это лучшее из четырёх</button>
+    <button class="btn worst" onclick="setWorst()">Это худшее из четырёх</button>
+  </div>
+
+  <div style="text-align:center;">
+    <button class="submit" onclick="submitForm()">Отправить ответы</button>
+  </div>
+
+  <form id="googleForm" class="hidden" action="https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse" method="POST" target="hidden_iframe">
+    <input type="hidden" name="entry.1593001992" id="A_clarity"/>
+    <input type="hidden" name="entry.700969611" id="A_artifacts"/>
+    <input type="hidden" name="entry.281323792" id="B_clarity"/>
+    <input type="hidden" name="entry.1474647835" id="B_artifacts"/>
+    <input type="hidden" name="entry.121291245" id="C_clarity"/>
+    <input type="hidden" name="entry.154193626" id="C_artifacts"/>
+    <input type="hidden" name="entry.40130332" id="D_clarity"/>
+    <input type="hidden" name="entry.681663354" id="D_artifacts"/>
+    <input type="hidden" name="entry.1954762928" id="best"/>
+    <input type="hidden" name="entry.1636042695" id="worst"/>
+  </form>
+  <iframe name="hidden_iframe" class="hidden"></iframe>
+
+  <script>
+    const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse";
+
+    const IMAGES = {
+      photo: [
+        "images/photo_png.png",
+        "images/photo_jpeg70.jpg",
+        "images/photo_webp70.webp",
+        "images/photo_avif40.avif"
+      ],
+      gradient: [
+        "images/gradient_png.png",
+        "images/gradient_jpeg70.jpg",
+        "images/gradient_webp70.webp",
+        "images/gradient_avif40.avif"
+      ],
+      graphic: [
+        "images/graphic_png.png",
+        "images/graphic_jpeg70.jpg",
+        "images/graphic_webp70.webp",
+        "images/graphic_avif40.avif"
+      ]
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type') || 'photo';
+    const files = IMAGES[type] || IMAGES.photo;
+
+    const shuffled = files.map(src => ({src, label: ''}));
+    const letters = ['A','B','C','D'];
+    for (let i = 0; i < shuffled.length; i++) shuffled[i].label = letters[i];
+    shuffled.sort(() => Math.random() - 0.5);
+
+    let best = "", worst = "";
+
+    const container = document.getElementById("imagesContainer");
+    shuffled.forEach(img => {
+      const block = document.createElement("div");
+      block.className = "img-block";
+      block.innerHTML = `
+        <h2>Изображение ${img.label}</h2>
+        <img src="${img.src}" alt="test image">
+        <div class="label">Чёткость и детализация</div>
+        <div class="scale">1 <input type="range" min="1" max="5" value="3" class="slider" id="clarity_${img.label}"> 5</div>
+        <div class="label">Отсутствие артефактов</div>
+        <div class="scale">1 <input type="range" min="1" max="5" value="3" class="slider" id="artifacts_${img.label}"> 5</div>
+      `;
+      container.appendChild(block);
+    });
+
+    function setBest() { best = prompt("Какое изображение лучшее? (A, B, C или D)", ""); }
+    function setWorst() { worst = prompt("Какое изображение худшее? (A, B, C или D)", ""); }
+
+    function submitForm() {
+      if (!best || !worst) return alert("Укажите лучшее и худшее изображение!");
+
+      ['A','B','C','D'].forEach(l => {
+        document.getElementById(`${l}_clarity`).value = document.getElementById(`clarity_${l}`).value;
+        document.getElementById(`${l}_artifacts`).value = document.getElementById(`artifacts_${l}`).value;
+      });
+      document.getElementById("best").value = best.toUpperCase();
+      document.getElementById("worst").value = worst.toUpperCase();
+
+      document.getElementById("googleForm").setAttribute("action", FORM_ACTION);
+      document.getElementById("googleForm").submit();
+      alert("Спасибо! Ответы отправлены.");
+    }
+  </script>
+</body>
+</html>
