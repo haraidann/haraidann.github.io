@@ -27,6 +27,11 @@
     Оцените каждое изображение от 1 (очень плохо) до 5 (отлично)
   </p>
 
+  <div style="text-align:center; margin:2rem 0;">
+    <label style="font-size:1.1rem; font-weight:bold;">Ваше имя:</label><br>
+    <input type="text" id="userName" placeholder="Введите ваше имя" style="padding:0.7rem; font-size:1rem; border:2px solid #ddd; border-radius:8px; width:300px; margin-top:0.5rem;">
+  </div>
+
   <div class="images" id="imagesContainer"></div>
 
   <div style="text-align:center; margin:3rem 0;">
@@ -48,6 +53,7 @@
         action="https://docs.google.com/forms/d/e/1FAIpQLSfFFwqnprba3Iu1Wq2_NmR7ZxDEOWpG4lAFFZJAYLbnlR3gEA/formResponse" 
         method="POST" 
         target="hidden_iframe">
+    <input type="text" name="entry.444522997" id="name"/>
     <input type="text" name="entry.1593001992" id="A_clarity"/>
     <input type="text" name="entry.700969611" id="A_artifacts"/>
     <input type="text" name="entry.281323792" id="B_clarity"/>
@@ -120,6 +126,13 @@
     }
 
     function submitForm() {
+      const name = document.getElementById("userName").value.trim();
+      
+      if (!name) {
+        alert("Пожалуйста, введите ваше имя!");
+        return;
+      }
+
       if (!best || !worst) {
         alert("Укажите лучшее и худшее изображение!");
         return;
@@ -130,6 +143,7 @@
         return;
       }
 
+      document.getElementById("name").value = name;
       ['A','B','C','D'].forEach(l => {
         document.getElementById(`${l}_clarity`).value = document.getElementById(`clarity_${l}`).value;
         document.getElementById(`${l}_artifacts`).value = document.getElementById(`artifacts_${l}`).value;
