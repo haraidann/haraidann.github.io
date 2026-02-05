@@ -1,7 +1,7 @@
 # Портфолио — Алемхан
 
 ## 🌐 Демо
-https://haraidann.github.io/haraidann.github.io/
+https://haraidann.github.io/
 
 ## 📋 Описание
 
