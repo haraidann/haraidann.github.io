@@ -1,0 +1,90 @@
+.page {
+  width: 100%;
+  min-height: 80vh;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+}
+
+/* Main content */
+.content {
+  padding: 60px 180px;
+}
+
+.title {
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+/* Contact cards */
+.contact-cards {
+  display: flex;
+  gap: 136px;
+  justify-content: center;
+}
+
+.contact-card {
+  width: 252px;
+  height: 196px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--card-bg);
+  color: var(--text-color); /* добавим для надписей */
+}
+
+.icon-container {
+  margin-bottom: 7px;
+}
+
+.contact-type {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.divider {
+  width: 230px;
+  height: 1px;
+  margin-bottom: 15px;
+  background-color: var(--text-color); /* белый в светлой, светлый в тёмной */
+}
+
+.contact-value {
+  color: var(--text-color);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .content {
+    padding: 40px;
+  }
+
+  .contact-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .contact-card {
+    width: 100%;
+    max-width: 252px;
+  }
+}

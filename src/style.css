@@ -1,0 +1,170 @@
+/* Base styles */
+:root {
+  --bg-color: #d4cccc;
+  --text-color: #000;
+  --card-bg: #d9d9d9;
+  --accent-color: #3498db;
+  --accent-hover: #217dbb;
+  --btn-text: #fff;
+  --input-bg: #f5f5f5;
+  --input-border: #ccc;
+  --input-focus: #3498db;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+}
+
+/* Темная тема */
+body.dark-theme {
+  --bg-color: #232323;
+  --text-color: #f5f5f5;
+  --card-bg: #333333;
+  --accent-color: #2980b9;
+  --accent-hover: #3498db;
+  --btn-text: #f5f5f5;
+  --input-bg: #444;
+  --input-border: #555;
+  --input-focus: #3498db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navigation styles */
+.navigation {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 38px;
+  background-color: var(--card-bg);
+  transition: background-color 0.3s;
+}
+
+.navigation-container {
+  height: 100%;
+}
+
+.navigation-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 100%;
+  list-style: none;
+}
+
+.navigation-item {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navigation-item:hover {
+  text-decoration: underline;
+}
+
+
+
+.content-wrapper {
+  min-height: calc(90vh - 45px);
+  padding: 60px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s;
+}
+
+.about-container {
+  max-width: 706px;
+}
+
+.about-heading {
+  color: var(--text-color);
+  font-size: 40px;
+
+  font-weight: 700;
+  margin-bottom: 43px;
+  transition: color 0.3s;
+}
+
+.about-description {
+  color: var(--text-color);
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 140%;
+  transition: color 0.3s;
+}
+
+.profile-image {
+  width: 269px;
+  height: 404px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .content-wrapper {
+    padding: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .about-container {
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 300px;
+  }
+  
+}
+
+@media (max-width: 640px) {
+  .navigation {
+    padding: 0 20px;
+  }
+
+  .navigation-links {
+    gap: 15px;
+  }
+
+  .navigation-item {
+    font-size: 16px;
+  }
+
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  .about-heading {
+    font-size: 32px;
+  }
+
+  .about-description {
+    font-size: 18px;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 270px;
+  }
+  
+}

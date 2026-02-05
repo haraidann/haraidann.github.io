@@ -1,0 +1,128 @@
+/* Main content area */
+.main-content {
+  min-height: calc(10vh - 45px);
+  padding: 60px 100px;
+  background-color: var(--bg-color);
+}
+
+/* Skills section */
+.skills-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 40px;
+}
+
+.skills-list {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 140%;
+}
+
+
+.skills-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.skill-item {
+  margin-bottom: 10px;
+}
+
+/* Skills icons section */
+.skills-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.spring-icon {
+  width: 190px;
+  height: 49px;
+}
+
+.icon-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.bootstrap-icon {
+  width: 88px;
+  height: 72px;
+}
+
+.css-icon {
+  width: 73px;
+  height: 72px;
+}
+
+.html-icon {
+  width: 86px;
+  height: 86px;
+}
+
+.postman-icon {
+  width: 93px;
+  height: 93px;
+}
+
+.postgresql-icon {
+  width: 83px;
+  height: 85px;
+}
+
+.git-icon {
+  width: 98px;
+  height: 98px;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .main-content {
+    padding: 40px;
+  }
+
+  .skills-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .skills-icons {
+    align-items: center;
+  }
+
+  .icon-row {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .skills-title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .skills-list {
+    font-size: 18px;
+  }
+
+  .skills-icons {
+    width: 100%;
+  }
+
+  .spring-icon {
+    width: 150px;
+    height: auto;
+  }
+
+  .icon-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+}
