@@ -1,7 +1,7 @@
 # Портфолио — Алемхан
 
 ## 🌐 Демо
-https://haraidann.github.io/
+https://haraidann.github.io
 
 ## 📋 Описание
 
@@ -30,4 +30,3 @@ git clone https://github.com/haraidann/haraidann.github.io.git
 
 * Салимжанов Алемхан
 * Группа: CS-204(c)
-* GitHub: [https://github.com/](https://github.com/haraidann)
